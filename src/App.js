@@ -1,5 +1,6 @@
 import React, {useState, useRef} from 'react';  //import hooks with {}...to JavaScript Wolrd.
 import TodoList from './TodoList'
+import uuidv4 from './uuid/v4'
 
 function App() {
   const [todos, setTodo] = useState([])
@@ -13,7 +14,7 @@ function App() {
     const name = todoNameRef.current.value
     if (name === "") return  // Don't want to add empty todos.
     setTodo(previousTodos => {
-      return [...previousTodos, { id: 1, name: name, complete: false }]
+      return [...previousTodos, { id: uuidv4(), name: name, complete: false }]
     })
     todoNameRef.current.value = null  // Clear input after adding todo.
   }
