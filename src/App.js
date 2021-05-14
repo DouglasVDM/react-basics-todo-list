@@ -5,16 +5,22 @@ import { v4 as uuidv4 } from 'uuid'
 const LOCAL_STORAGE_KEY = "todoApp.todos"
 
 function App() {
-  const [todos, setTodo] = useState([])
+  const [todos, setTodos] = useState([])
   //  Call the function pass in Default state is empty array to store all the todos.
   //  todos is all the todos inside of the Todo State.
   // setTodo is the Function we call to Update the Todos.
-
   const todoNameRef = useRef()
 
+  //  Getting todos.
+  useEffect(() => {
+    const storedTodos = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY))
+    if (storedTodos) setTodos(storedTodos)
+  }, [])
+
+  //  Storing todos
   useEffect(() => {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(todos))
-  },[todos])
+  }, [todos])
   //  takes in another function as a parameter that must do things
   //  evertime something changes, I want to call the very first function
   //  evertime the todos changes I want to save my todos
@@ -22,7 +28,7 @@ function App() {
   function handleAddTodo(e) {
     const name = todoNameRef.current.value
     if (name === "") return  // Don't want to add empty todos.
-    setTodo(previousTodos => {
+    setTodos(previousTodos => {
       return [...previousTodos, { id: uuidv4(), name: name, complete: false }]
     })
     todoNameRef.current.value = null  // Clear input after adding todo.
