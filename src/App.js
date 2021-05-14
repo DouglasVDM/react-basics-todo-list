@@ -1,6 +1,8 @@
-import React, {useState, useRef} from 'react';  //import hooks with {}...to JavaScript Wolrd.
+import React, {useState, useRef, useEffect } from 'react';  //import hooks with {}...to JavaScript Wolrd.
 import TodoList from './TodoList'
-import { v4 as uuidv4} from 'uuid'
+import { v4 as uuidv4 } from 'uuid'
+
+const LOCAL_STORAGE_KEY = "todoApp.todos"
 
 function App() {
   const [todos, setTodo] = useState([])
@@ -9,6 +11,13 @@ function App() {
   // setTodo is the Function we call to Update the Todos.
 
   const todoNameRef = useRef()
+
+  useEffect(() => {
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(todos))
+  },[todos])
+  //  takes in another function as a parameter that must do things
+  //  evertime something changes, I want to call the very first function
+  //  evertime the todos changes I want to save my todos
 
   function handleAddTodo(e) {
     const name = todoNameRef.current.value
