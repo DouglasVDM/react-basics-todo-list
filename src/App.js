@@ -12,7 +12,9 @@ function App() {
   function handleAddTodo(e) {
     const name = todoNameRef.current.value
     if (name === "") return  // Don't want to add empty todos.
-    console.log(name)
+    setTodo(previousTodos => {
+      return [...previousTodos, { id: 1, name: name, complete: false }]
+    })
     todoNameRef.current.value = null  // Clear input after adding todo.
   }
 
