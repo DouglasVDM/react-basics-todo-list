@@ -4,7 +4,13 @@ import Todo from './Todo';
 export default function TodoList({ todos }) {
   return (
     todos.map(todo => {
-      return <Todo todo={todo} />
+      return <Todo key={todo} todo={todo} />
     })
   )
 }
+/*
+Keyword "key"
+React only rerenders or change the components that actually changed inside of our array
+Instead of rerendering all of them, every single time.
+It's there for iffiency purposes
+*/
