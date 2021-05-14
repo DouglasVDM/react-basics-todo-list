@@ -2,7 +2,7 @@ import React, {useState} from 'react';  //import hooks with {}...to JavaScript W
 import TodoList from './TodoList'
 
 function App() {
-  const [todos, setTodo] = useState([{ id: 1, name: "Todo 1", complete: false }])
+  const [todos, setTodo] = useState([])
   //  Call the function pass in Default state is empty array to store all the todos.
   //  todos is all the todos inside of the Todo State
   // setTodo is the Function we call to Update the Todos.
